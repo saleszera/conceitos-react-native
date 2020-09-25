@@ -25,4 +25,12 @@ Este é o resultado do desafio 03 do bootcamp GoStack. A aplicação tem como ob
 - Se o aplicativo exibir apenas uma tela roxa, será necessário cadastrar novos projetos. Utilize o insomnia como explicado na página do projeto do [back-end](https://github.com/saleszera/conceitos-node) aqui no GitHub
 - Em caso de teste direto no celular, em `src/services/api.js` altere a string da linha 4 para `http://localhost:3333`. Testes pelo emulador, altere a string da linha 4 para `http://10.0.2.2:3333`. testes utilizando o emulador genymotion, altere a string da linha 4 para `http://10.0.3.3:3333`.
 
+## 💥️ Bonus
+- [x] Inserido botão com icone de like. Para isso foi utilizada a biblioteca [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons)
+- [x] Inserido if inline para verificar se há likes no repositório, se não existir nenhum like, é exibida a mensagem "Sem nenhuma curtida"
+
+>## Próximas features
+>>- Quando clicado no repositório o usuário será redirecionado por meio de um WebView para a página web do repositório cadastrado.
+>>- Formulário para cadastro de repositórios
+
 # Obrigado por testar o aplicativo! 😁️
