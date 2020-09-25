@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {
   SafeAreaView,
@@ -43,7 +44,7 @@ export default function App() {
           keyExtractor={repositorie => repositorie.id}
           renderItem={({item: repository}) => (
             <View style={styles.repositoryContainer}>
-              <Text style={styles.repository}>{repository.title}</Text>            
+              <Text style={styles.repository} numberOfLines={1}>{repository.title}</Text>            
               
               <View style={styles.techsContainer}>
                 {repository.techs.map(tech => (
@@ -53,24 +54,25 @@ export default function App() {
                 ))}               
               </View>
     
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => handleLikeRepository(repository.id)}
+                // Remember to replace "1" below with repository ID: {`like-button-${repository.id}`}
+                testID={`like-button-${repository.id}`}
+              >                
+                <Icon name="thumb-up" size={30} color="#7159c1" />
+              </TouchableOpacity>
+
               <View style={styles.likesContainer}>
                 <Text
                   style={styles.likeText}
                   // Remember to replace "1" below with repository ID: {`repository-likes-${repository.id}`}
                   testID={`repository-likes-${repository.id}`}
                 >
-                  {repository.likes} curtidas
+                  {repository.likes === 0 ? "Sem nenhuma curtida" : repository.likes + " curtidas"}
                 </Text>
-              </View>
-    
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => handleLikeRepository(repository.id)}
-                // Remember to replace "1" below with repository ID: {`like-button-${repository.id}`}
-                testID={`like-button-${repository.id}`}
-              >
-                <Text style={styles.buttonText}>Curtir</Text>
-              </TouchableOpacity>
+              </View>    
+              
             </View>
           )}
         />
@@ -86,6 +88,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#7159c1",    
   },
   repositoryContainer: {
+    justifyContent: "center",
+    alignItems: "center",
     marginBottom: 15,
     marginHorizontal: 15,
     backgroundColor: "#fff",
@@ -95,10 +99,11 @@ const styles = StyleSheet.create({
   repository: {
     fontSize: 32,
     color: "#000",   
-    fontWeight: "bold",
+    fontWeight: "bold",    
   },
   techsContainer: {
     flexDirection: "row",
+    alignItems: "center",
     marginTop: 10,    
   },
   tech: {
@@ -111,7 +116,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     borderRadius: 4,
   },
-  likesContainer: {
+  likesContainer: {    
     marginTop: 15,
     flexDirection: "row",
     justifyContent: "space-between",
@@ -122,15 +127,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   button: {
-    marginTop: 10,
-    borderRadius: 4,    
+    marginTop: 10,      
   },
-  buttonText: {
-    fontSize: 14,
-    fontWeight: "bold",
-    marginRight: 10,
-    color: "#fff",
-    backgroundColor: "#7159c1",
-    padding: 15,
-  },
+
 });
